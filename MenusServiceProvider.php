@@ -38,26 +38,9 @@ class MenusServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerHtmlPackage();
-
         $this->app['menus'] = $this->app->share(function ($app) {
             return new Menu($app['view'], $app['config']);
         });
-    }
-
-    /**
-     * Register "iluminate/html" package.
-     */
-    protected function registerHtmlPackage()
-    {
-        $this->app->register('Collective\Html\HtmlServiceProvider');
-
-        $aliases = [
-            'HTML' => 'Collective\Html\HtmlFacade',
-            'Form' => 'Collective\Html\FormFacade',
-        ];
-
-        AliasLoader::getInstance($aliases)->register();
     }
 
     /**
